@@ -50,7 +50,7 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  for(let i = 0; i < 5; i++) {
+  /*for(let i = 0; i < 5; i++) {
       alert(`Round ${i+1}`);
 
       //lets the user input their choice
@@ -80,7 +80,7 @@ function playGame() {
           alert("Invalid input. Please enter rock, paper, or scissors.");
           i--;
       }
-  }
+  /*}
 
   alert("Final Scores:\nYou: " + humanScore + "\nComputer: " + computerScore);
 
