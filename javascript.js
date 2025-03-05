@@ -42,6 +42,31 @@ function playRound(humanChoice, computerChoice) {
   }
   return "Computer";
 }
+//event listeners
+//experiment with the playround parameter to be capitalized or lowercase
+    const rockButton = document.getElementById("Rock");
+    rockButton.addEventListener("click", () => {
+        playRound("Rock");
+        getComputerChoice();
+    });
+
+    const paperButton = document.getElementById("Paper");
+    paperButton.addEventListener("click", () =>{
+        playRound("Paper");
+        getComputerChoice();
+
+    });
+
+    const scissorsButton = document.getElementById("Scissors");
+    scissorsButton.addEventListener("click", () => {
+        playRound("Scissor");
+        getComputerChoice();
+    });
+
+   // document.getElementById("Rock").addEventListener("click",()=>(playRound("Rock"), getComputerChoice()));
+    //document.getElementById("Paper").addEventListener("click",()=>(playRound("Paper"), getComputerChoice()));
+    //document.getElementById("Scissors").addEventListener("click",()=>(playRound("Scissors"), getComputerChoice()));
+
 
 // Main game function
 function playGame() {
@@ -80,7 +105,8 @@ function playGame() {
           alert("Invalid input. Please enter rock, paper, or scissors.");
           i--;
       }
-  /*}
+    }
+    */
 
   alert("Final Scores:\nYou: " + humanScore + "\nComputer: " + computerScore);
 
