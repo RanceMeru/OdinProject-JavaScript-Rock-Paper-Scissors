@@ -44,11 +44,24 @@ function playRound(humanChoice, computerChoice) {
 }
 //event listeners
 //experiment with the playround parameter to be capitalized or lowercase
+
+//recheck this to have see if we need const rockButton
     const rockButton = document.getElementById("Rock");
     rockButton.addEventListener("click", () => {
         playRound("Rock");
         getComputerChoice();
     });
+    rockButton.addEventListener("click", () => {
+        const humanChoice = "Rock";
+        const computerChoice = getComputerChoice();
+        const result = playRound(humanChoice, computerChoice);
+        updateScore(result); // Function to update scores
+        displayResult(result); // Function to display the result in the text box
+    });
+//do the above for rock paper scissors(make it shorter depending on that they click loop?)
+
+
+
 
     const paperButton = document.getElementById("Paper");
     paperButton.addEventListener("click", () =>{
@@ -56,11 +69,27 @@ function playRound(humanChoice, computerChoice) {
         getComputerChoice();
 
     });
+    rockButton.addEventListener("click", () => {
+        const humanChoice = "Paper";
+        const computerChoice = getComputerChoice();
+        const result = playRound(humanChoice, computerChoice);
+        updateScore(result); // Function to update scores
+        displayResult(result); // Function to display the result in the text box
+    });
+//added code from the top part r1
 
     const scissorsButton = document.getElementById("Scissors");
     scissorsButton.addEventListener("click", () => {
         playRound("Scissor");
         getComputerChoice();
+    });
+
+    rockButton.addEventListener("click", () => {
+        const humanChoice = "Scissor";
+        const computerChoice = getComputerChoice();
+        const result = playRound(humanChoice, computerChoice);
+        updateScore(result); // Function to update scores
+        displayResult(result); // Function to display the result in the text box
     });
 
    // document.getElementById("Rock").addEventListener("click",()=>(playRound("Rock"), getComputerChoice()));
@@ -75,54 +104,84 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  /*for(let i = 0; i < 5; i++) {
-      alert(`Round ${i+1}`);
+    function updateScore(){
 
-      //lets the user input their choice
-      let input = prompt("Type rock, paper, or scissors");
-      //stores the functions into variables to make it usable in other parts of the code
-      const humanChoice = getHumanChoice(input);
-      const computerChoice = getComputerChoice();
+        if (result === "Human") {
+            humanScore++;
 
-      //gives the game logic of what happens if the result is the human or computer wins or if its a tie
-      if (humanChoice) {
-          alert("You chose: " + humanChoice + "\nThe computer chose: " + computerChoice);
+        
+        }else if (result === "Computer")
+                computerScore++;
+        
 
-          const result = playRound(humanChoice, computerChoice);
-          
-          if (result === "Human") {
-              alert("You win this round!");
-              humanScore++;
-          } else if (result === "Computer") {
-              alert("Computer wins this round!");
-              computerScore++;
-          } else {
-              alert("It's a tie!");
-          }
-          
-          alert("Current Scores:\nYou: " + humanScore + "\nComputer: " + computerScore);
-      } else {
-          alert("Invalid input. Please enter rock, paper, or scissors.");
-          i--;
-      }
     }
-    */
 
-  alert("Final Scores:\nYou: " + humanScore + "\nComputer: " + computerScore);
+    function revealResults(result){
 
-  if (humanScore > computerScore) {
-      alert("You win the game!");
-  } else if (computerScore > humanScore) {
-      alert("Computer wins the game!");
-  } else {
-      alert("It's a tie game!");
-  }
+        const resultBox = document.getElementById("Results");
+        resultBox.textContent = `Result: ${result}`;
+        
+    }
 
-  let playAgain = confirm("Do you want to play again?");
-  if (playAgain) {
-      playGame();
-  }
-}
+//   for(let i = 0; i < 5; i++) {
+//       alert(`Round ${i+1}`);
+
+//       //lets the user input their choice
+//       let input = prompt("Type rock, paper, or scissors");
+//       //stores the functions into variables to make it usable in other parts of the code
+//       const humanChoice = getHumanChoice(input);
+//       const computerChoice = getComputerChoice();
+
+//       //gives the game logic of what happens if the result is the human or computer wins or if its a tie
+//       if (humanChoice) {
+//           alert("You chose: " + humanChoice + "\nThe computer chose: " + computerChoice);
+
+//           const result = playRound(humanChoice, computerChoice);
+          
+//           if (result === "Human") {
+//               alert("You win this round!");
+//               humanScore++;
+//           } else if (result === "Computer") {
+//               alert("Computer wins this round!");
+//               computerScore++;
+//           } else {
+//               alert("It's a tie!");
+//           }
+          
+//           alert("Current Scores:\nYou: " + humanScore + "\nComputer: " + computerScore);
+//       } else {
+//           alert("Invalid input. Please enter rock, paper, or scissors.");
+//           i--;
+//       }
+//     }
+    let roundsPlayed = 0;
+    function checkGameRounds(){
+
+        if(roundsPlayed === 5){
+            const resultBox = document.getElementById("Result");
+            resultBox.textContent = `Game Over! Final Scores:\nYou: ${humanScore}\nComputer: ${computerScore}`;
+            resetGame(); // Function to reset scores and rounds
+
+        }
+    }
+
+
+//   alert("Final Scores:\nYou: " + humanScore + "\nComputer: " + computerScore);
+
+//   if (humanScore > computerScore) {
+//       alert("You win the game!");
+//   } else if (computerScore > humanScore) {
+//       alert("Computer wins the game!");
+//   } else {
+//       alert("It's a tie game!");
+//   }
+
+//   let playAgain = confirm("Do you want to play again?");
+//   if (playAgain) {
+//       playGame();
+//   }
+// }
 
 //  will start the game when it is called
+}
 playGame();
