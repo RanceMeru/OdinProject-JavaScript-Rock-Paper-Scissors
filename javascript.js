@@ -103,6 +103,7 @@ function playGame() {
   //sets out the plan to make the variables for the game to keep score and count it 
   let humanScore = 0;
   let computerScore = 0;
+  let roundsPlayed = 0;
 
     function updateScore(){
 
@@ -124,7 +125,7 @@ function playGame() {
     }
 
 
-    let roundsPlayed = 0;
+   
     function checkGameRounds(){
 
         if(roundsPlayed === 5){
