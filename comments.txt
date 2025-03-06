@@ -29,3 +29,24 @@
           i--;
       }
     }
+
+
+
+
+      alert("Final Scores:\nYou: " + humanScore + "\nComputer: " + computerScore);
+
+  if (humanScore > computerScore) {
+      alert("You win the game!");
+  } else if (computerScore > humanScore) {
+      alert("Computer wins the game!");
+  } else {
+      alert("It's a tie game!");
+  }
+
+  let playAgain = confirm("Do you want to play again?");
+  if (playAgain) {
+      playGame();
+  }
+}
+
+ will start the game when it is called
