@@ -14,87 +14,37 @@ function getHumanChoice(input) {
 
 // Function to get the computer's choice
 function getComputerChoice() {
-  //Math.Random() only generates a number 0 to 1 so break it into 1/3 to still stay in constraints
-  const randomNumber = Math.random();
-  if (randomNumber < 1/3) {
-      return "Rock";
-  } else if (randomNumber < 2/3) {
-      return "Paper";
-  } else {
-      return "Scissors";
-  }
+    const randomNumber = Math.random();
+    if (randomNumber < 1 / 3) {
+        return "Rock";
+    } else if (randomNumber < 2 / 3) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
 }
+
+
 
 // Function to play a single round
 function playRound(humanChoice, computerChoice) {
-  //makes the input case insensitive
-  humanChoice = humanChoice.toLowerCase();
-  computerChoice = computerChoice.toLowerCase();
+
   if(humanChoice === computerChoice){
       return "Tie";
   }
   if (
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "paper" && computerChoice === "rock") ||
-      (humanChoice === "scissors" && computerChoice === "paper")
+      (humanChoice === "Rock" && computerChoice === "Scissors") ||
+      (humanChoice === "Paper" && computerChoice === "Rock") ||
+      (humanChoice === "Scissors" && computerChoice === "Paper")
   ) {
       return "Human";
   }
   return "Computer";
 }
-//event listeners
-//experiment with the playround parameter to be capitalized or lowercase
-
-//recheck this to have see if we need const rockButton
-    const rockButton = document.getElementById("Rock");
-    rockButton.addEventListener("click", () => {
-        playRound("Rock");
-        getComputerChoice();
-    });
-    rockButton.addEventListener("click", () => {
-        const humanChoice = "Rock";
-        const computerChoice = getComputerChoice();
-        const result = playRound(humanChoice, computerChoice);
-        updateScore(result); // Function to update scores
-        displayResult(result); // Function to display the result in the text box
-    });
-//do the above for rock paper scissors(make it shorter depending on that they click loop?)
 
 
 
 
-    const paperButton = document.getElementById("Paper");
-    paperButton.addEventListener("click", () =>{
-        playRound("Paper");
-        getComputerChoice();
-
-    });
-    rockButton.addEventListener("click", () => {
-        const humanChoice = "Paper";
-        const computerChoice = getComputerChoice();
-        const result = playRound(humanChoice, computerChoice);
-        updateScore(result); // Function to update scores
-        displayResult(result); // Function to display the result in the text box
-    });
-//added code from the top part r1
-
-    const scissorsButton = document.getElementById("Scissors");
-    scissorsButton.addEventListener("click", () => {
-        playRound("Scissor");
-        getComputerChoice();
-    });
-
-    rockButton.addEventListener("click", () => {
-        const humanChoice = "Scissor";
-        const computerChoice = getComputerChoice();
-        const result = playRound(humanChoice, computerChoice);
-        updateScore(result); // Function to update scores
-        displayResult(result); // Function to display the result in the text box
-    });
-
-   // document.getElementById("Rock").addEventListener("click",()=>(playRound("Rock"), getComputerChoice()));
-    //document.getElementById("Paper").addEventListener("click",()=>(playRound("Paper"), getComputerChoice()));
-    //document.getElementById("Scissors").addEventListener("click",()=>(playRound("Scissors"), getComputerChoice()));
 
 
 // Main game function
@@ -105,6 +55,59 @@ function playGame() {
   let computerScore = 0;
   let roundsPlayed = 0;
 
+
+  const rockButton = document.getElementById("Rock");
+  //commented out code did not work
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const rockButton = document.getElementById("Rock");
+    const textArea = document.getElementById("roundsBox");
+    rockButton.addEventListener("click", () => {
+      textArea.value = "Hello";
+    });
+  })
+  
+  
+  const paperButton = document.getElementById("Paper");
+  const scissorsButton = document.getElementById("Scissors");
+  const scoreBox = document.getElementById("scoreBox");
+  
+  const roundsBox = document.getElementById("roundsBox");
+  const resultsBox = document.getElementById("resultBox");
+
+
+
+  
+  rockButton.addEventListener("click", () => {
+      const humanChoice = "Rock";
+      const computerChoice = getComputerChoice();
+      console.log("Clicked Rock");
+       
+  });
+
+ 
+    
+    
+    paperButton.addEventListener("click", () => {
+        const humanChoice = "Paper";
+        const computerChoice = getComputerChoice();
+        console.log("Paper");
+        
+    });
+//added code from the top part r1
+
+
+scissorsButton.addEventListener("click", () => {
+    const humanChoice = "Scissors";
+    const computerChoice = getComputerChoice();
+    console.log("Scissors");
+});
+
+
+
+  
+
+
     function updateScore(){
 
         if (result === "Human") {
@@ -112,14 +115,17 @@ function playGame() {
 
         
         }else if (result === "Computer")
-                computerScore++;
-        
+            computerScore++;
+           scoreBox.value = `Rounds Played: ${roundsPlayed}\nYour Score: ${humanScore}\nComputer Score: ${computerScore}`;
 
     }
-
+    //make the score update in the score textbox
+//revisit and result box is going to show who won "the commentary"
+    //Score shows the who won in the end
+    //set revealResult to ""
     function revealResults(result){
 
-        const resultBox = document.getElementById("Results");
+        const resultBox = document.getElementById("resultBox");
         resultBox.textContent = `Result: ${result}`;
         
     }
@@ -136,6 +142,11 @@ function playGame() {
         }
     }
 
+    function resetGame(){
+
+
+        
+    }
 
 
 }
