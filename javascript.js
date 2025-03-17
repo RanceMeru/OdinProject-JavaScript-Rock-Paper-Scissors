@@ -1,16 +1,4 @@
-// Function to get the human's choice
-function getHumanChoice(input) {
-  switch(input.toLowerCase()) {
-      case "rock":
-          return "Rock";
-      case "paper":
-          return "Paper";
-      case "scissors":
-          return "Scissors";
-      default:
-          return null;
-  }
-}
+
 
 // Function to get the computer's choice
 function getComputerChoice() {
@@ -57,23 +45,28 @@ function playGame() {
 
 
   const rockButton = document.getElementById("Rock");
-  //commented out code did not work
-
+  const paperButton = document.getElementById("Paper");
+  const scissorsButton = document.getElementById("Scissors");
+//has the text boxes
+  const scoreBox = document.getElementById("scoreBox");
+  const roundsBox = document.getElementById("roundsBox");
+  const resultsBox = document.getElementById("resultsBox");
+  
+    //what will happen when I press the rock button
+    //register this as human's choice and compare against computer choice
   document.addEventListener("DOMContentLoaded", () => {
     const rockButton = document.getElementById("Rock");
-    const textArea = document.getElementById("roundsBox");
+    const textArea = document.getElementById("resultsBox");
+    
     rockButton.addEventListener("click", () => {
-      textArea.value = "Hello";
+
+        //what will display when you choose rock
+      textArea.value = "The computer chose :"+ {getComputerChoice}/n +"Your choice was Rock" ;
     });
   })
   
   
-  const paperButton = document.getElementById("Paper");
-  const scissorsButton = document.getElementById("Scissors");
-  const scoreBox = document.getElementById("scoreBox");
   
-  const roundsBox = document.getElementById("roundsBox");
-  const resultsBox = document.getElementById("resultBox");
 
 
 
@@ -144,7 +137,7 @@ scissorsButton.addEventListener("click", () => {
 
     function resetGame(){
 
-
+            index.reload();
         
     }
 
