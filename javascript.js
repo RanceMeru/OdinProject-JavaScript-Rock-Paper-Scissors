@@ -130,4 +130,4 @@ function playRound(humanChoice, computerChoice) {
             updateScore(result, humanChoice, computerChoice);
     });
     });   
-}
+
