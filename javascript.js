@@ -1,6 +1,12 @@
 
 
-// Function to get the computer's choice
+
+  //sets out the plan to make the variables for the game to keep score and count it 
+  let humanScore = 0;
+  let computerScore = 0;
+  let roundsPlayed = 0;
+
+  // Function to get the computer's choice
 function getComputerChoice() {
     const randomNumber = Math.random();
     if (randomNumber < 1 / 3) {
@@ -35,73 +41,9 @@ function playRound(humanChoice, computerChoice) {
 
 
 
-// Main game function
-function playGame() {
-
-  //sets out the plan to make the variables for the game to keep score and count it 
-  let humanScore = 0;
-  let computerScore = 0;
-  let roundsPlayed = 0;
 
 
-  const rockButton = document.getElementById("Rock");
-  const paperButton = document.getElementById("Paper");
-  const scissorsButton = document.getElementById("Scissors");
-//has the text boxes
-  const scoreBox = document.getElementById("scoreBox");
-  const roundsBox = document.getElementById("roundsBox");
-  const resultsBox = document.getElementById("resultsBox");
-  
-    //what will happen when I press the rock button
-    //register this as human's choice and compare against computer choice
-  document.addEventListener("DOMContentLoaded", () => {
-    const rockButton = document.getElementById("Rock");
-    const textArea = document.getElementById("resultsBox");
-    
-    rockButton.addEventListener("click", () => {
-
-        //what will display when you choose rock
-      textArea.value = "The computer chose :"+ {getComputerChoice}/n +"Your choice was Rock" ;
-    });
-  })
-  
-  
-  
-
-
-
-  
-  rockButton.addEventListener("click", () => {
-      const humanChoice = "Rock";
-      const computerChoice = getComputerChoice();
-      console.log("Clicked Rock");
-       
-  });
-
- 
-    
-    
-    paperButton.addEventListener("click", () => {
-        const humanChoice = "Paper";
-        const computerChoice = getComputerChoice();
-        console.log("Paper");
-        
-    });
-//added code from the top part r1
-
-
-scissorsButton.addEventListener("click", () => {
-    const humanChoice = "Scissors";
-    const computerChoice = getComputerChoice();
-    console.log("Scissors");
-});
-
-
-
-  
-
-
-    function updateScore(){
+    function updateScore(result, humanChoice, computerChoice){
 
         if (result === "Human") {
             humanScore++;
@@ -109,38 +51,83 @@ scissorsButton.addEventListener("click", () => {
         
         }else if (result === "Computer")
             computerScore++;
-           scoreBox.value = `Rounds Played: ${roundsPlayed}\nYour Score: ${humanScore}\nComputer Score: ${computerScore}`;
 
+            roundsPlayed++;
+
+            document.getElementById("roundsBox").value = `Rounds Played: ${roundsPlayed}`;
+            document.getElementById("scoreBox").value = `Your Score: ${humanScore}\nComputer Score: ${computerScore}`;
+
+             // Update the results box
+            document.getElementById("resultsBox").value = `You chose: ${humanChoice}\nComputer chose: ${computerChoice}\nResult: ${result}`;
+
+                // Check if the game is over
+                checkGameRounds();
+
+            
     }
-    //make the score update in the score textbox
-//revisit and result box is going to show who won "the commentary"
-    //Score shows the who won in the end
-    //set revealResult to ""
-    function revealResults(result){
 
-        const resultBox = document.getElementById("resultBox");
-        resultBox.textContent = `Result: ${result}`;
-        
-    }
-
-
-   
     function checkGameRounds(){
 
         if(roundsPlayed === 5){
-            const resultBox = document.getElementById("Result");
-            resultBox.textContent = `Game Over! Final Scores:\nYou: ${humanScore}\nComputer: ${computerScore}`;
-            resetGame(); // Function to reset scores and rounds
-
+           document.getElementById("resultsBox").value += `\nGame Over! Final Scores:\nYou: ${humanScore}\nComputer: ${computerScore}`;
+        resetGame();
         }
     }
 
     function resetGame(){
 
-            index.reload();
+         humanScore = 0;
+         computerScore = 0;
+         roundsPlayed = 0;
+        document.getElementById("scoreBox").value = '';
+        document.getElementById("resultsBox").value = '';
         
     }
 
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const rockButton = document.getElementById("Rock");
+      const paperButton = document.getElementById("Paper");
+      const scissorsButton = document.getElementById("Scissors");
+    //has the text boxes
+    //   const scoreBox = document.getElementById("scoreBox");
+    //   const roundsBox = document.getElementById("roundsBox");
+    //   const resultsBox = document.getElementById("resultsBox");
+      
+        //what will happen when I press the rock button
+        //register this as human's choice and compare against computer choice
+      
+        // const textArea = document.getElementById("resultsBox");
+    
+    
+        
+        rockButton.addEventListener("click", () => {
+    
+            const humanChoice = "Rock";
+            const computerChoice = getComputerChoice();
+            const result = playRound(humanChoice, computerChoice);
+            updateScore(result, humanChoice, computerChoice);
+        });
+      
+      
+     
+        
+        
+        paperButton.addEventListener("click", () => {
+            const humanChoice = "Paper";
+            const computerChoice = getComputerChoice();
+            const result = playRound(humanChoice, computerChoice);
+            updateScore(result, humanChoice, computerChoice);
+            
+        });
+    //added code from the top part r1
+    
+    
+    scissorsButton.addEventListener("click", () => {
+        const humanChoice = "Scissors";
+            const computerChoice = getComputerChoice();
+            const result = playRound(humanChoice, computerChoice);
+            updateScore(result, humanChoice, computerChoice);
+    });
+    });   
 }
-playGame();
